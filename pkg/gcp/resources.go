@@ -1,6 +1,7 @@
 package gcp
 
 import (
+	pb "buf.build/gen/go/plantoncloud/planton-cloud-apis/protocolbuffers/go/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/gcp"
 	"github.com/pkg/errors"
 	"github.com/plantoncloud-inc/dns-zone-pulumi-stack/pkg/gcp/record"
 	"github.com/plantoncloud-inc/dns-zone-pulumi-stack/pkg/gcp/zone"
@@ -8,7 +9,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func Resources(ctx *pulumi.Context, input) error {
+type ResourceStack struct {
+	Input *pb.DnsZoneGcpStackInput
+}
+
+func (s *ResourceStack) Resources(ctx *pulumi.Context) error {
 	gcpProvider, err := pulumigcpprovider.Get(ctx, s.Input.CredentialsInput.Google)
 	if err != nil {
 		return errors.Wrap(err, "failed to setup gcp provider")
