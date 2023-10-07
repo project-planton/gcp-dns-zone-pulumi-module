@@ -1,1 +1,1 @@
-# dns-zone-pulumi-stack
+# dns-zone-pulumi-blueprint
