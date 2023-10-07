@@ -9,7 +9,7 @@ import (
 	"github.com/plantoncloud-inc/go-commons/cloud/gcp/iam/roles/standard"
 	commonsdnsdomain "github.com/plantoncloud-inc/go-commons/network/dns/domain"
 	commonsdnszone "github.com/plantoncloud-inc/go-commons/network/dns/zone"
-	puluminameoutputgcp "github.com/plantoncloud-inc/pulumi-stack-runner-sdk/go/pulumi/name/provider/cloud/gcp/output"
+	puluminameoutputgcp "github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/gcp/output"
 	pulumigcp "github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp"
 	"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/dns"
 	"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/projects"

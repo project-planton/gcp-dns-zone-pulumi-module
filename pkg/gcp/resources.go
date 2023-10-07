@@ -5,7 +5,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/plantoncloud-inc/dns-zone-pulumi-stack/pkg/gcp/record"
 	"github.com/plantoncloud-inc/dns-zone-pulumi-stack/pkg/gcp/zone"
-	pulumigcpprovider "github.com/plantoncloud-inc/pulumi-stack-runner-sdk/go/pulumi/automation/provider/google"
+	pulumigcpprovider "github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/automation/provider/google"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
