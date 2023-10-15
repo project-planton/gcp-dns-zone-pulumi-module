@@ -1,11 +1,11 @@
 package gcp
 
 import (
-	pb "buf.build/gen/go/plantoncloud/planton-cloud-apis/protocolbuffers/go/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/gcp"
 	"github.com/pkg/errors"
 	"github.com/plantoncloud-inc/dns-zone-pulumi-blueprint/pkg/gcp/record"
 	"github.com/plantoncloud-inc/dns-zone-pulumi-blueprint/pkg/gcp/zone"
 	pulumigcpprovider "github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/automation/provider/google"
+	pb "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/gcp"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
