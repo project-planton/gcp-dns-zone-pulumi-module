@@ -4,7 +4,7 @@ import (
 	"github.com/pkg/errors"
 	puluminameawsoutput "github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/aws/output"
 	"github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/common/resource/network/dns/record"
-	dnsv1state "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/state"
+	dnsv1state "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone"
 	"github.com/pulumi/pulumi-aws-native/sdk/go/aws/route53"
 	awsclassic "github.com/pulumi/pulumi-aws/sdk/v6/go/aws"
 	awsclassicroute53 "github.com/pulumi/pulumi-aws/sdk/v6/go/aws/route53"
@@ -14,7 +14,7 @@ import (
 
 type Input struct {
 	AwsProvider    *awsclassic.Provider
-	DnsZone        *dnsv1state.DnsZoneState
+	DnsZone        *dnsv1state.DnsZone
 	CreatedR53Zone *route53.HostedZone
 }
 
@@ -27,7 +27,7 @@ func Resources(ctx *pulumi.Context, input *Input) error {
 
 func addDnsRecords(ctx *pulumi.Context, input *Input) error {
 	for _, domainRecord := range input.DnsZone.Spec.Records {
-		resName := record.Name(domainRecord.Name, strings.ToLower(domainRecord.RecordType))
+		resName := record.Name(domainRecord.Name, strings.ToLower(domainRecord.RecordType.String()))
 		rs, err := awsclassicroute53.NewRecord(ctx, resName, &awsclassicroute53.RecordArgs{
 			ZoneId:  input.CreatedR53Zone.ID(),
 			Name:    pulumi.String(domainRecord.Name),
