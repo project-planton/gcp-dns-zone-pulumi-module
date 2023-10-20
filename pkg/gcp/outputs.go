@@ -6,9 +6,9 @@ import (
 	gcpdnszonestack "github.com/plantoncloud-inc/dns-zone-pulumi-blueprint/pkg/gcp/zone"
 	"github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/org"
 	"github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/stack/output/backend"
+	dnsv1state "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone"
 	dnszonestack "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/gcp"
-	dnsv1state "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/state"
-	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/rpc/enums"
+	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/enums"
 )
 
 func Outputs(ctx context.Context, input *dnszonestack.DnsZoneGcpStackInput) (*dnszonestack.DnsZoneGcpStackOutputs, error) {
@@ -28,8 +28,8 @@ func Get(stackOutput map[string]interface{}, input *dnszonestack.DnsZoneGcpStack
 		return &dnszonestack.DnsZoneGcpStackOutputs{}
 	}
 	return &dnszonestack.DnsZoneGcpStackOutputs{
-		ZoneStatus: &dnsv1state.DnsZoneStatusState{
-			Gcp: &dnsv1state.DnsZoneGcpStatusState{
+		ZoneStatus: &dnsv1state.DnsZoneStatus{
+			Gcp: &dnsv1state.DnsZoneGcpStatus{
 				Nameservers: backend.GetStringSliceVal(stackOutput,
 					gcpdnszonestack.GetManagedZoneNameserversOutputName(input.ResourceInput.DnsZone.Metadata.Name)),
 			},
