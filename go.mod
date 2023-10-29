@@ -10,9 +10,9 @@ go 1.20
 
 require (
 	github.com/pkg/errors v0.9.1
-	github.com/plantoncloud-inc/go-commons v0.0.407
-	github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk v0.0.5
-	github.com/plantoncloud/planton-cloud-apis v0.0.8
+	github.com/plantoncloud-inc/go-commons v0.0.409
+	github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk v0.0.6
+	github.com/plantoncloud/planton-cloud-apis v0.0.12
 	github.com/pulumi/pulumi-aws-native/sdk v0.79.0
 	github.com/pulumi/pulumi-aws/sdk/v6 v6.3.0
 	github.com/pulumi/pulumi-gcp/sdk/v6 v6.67.0
