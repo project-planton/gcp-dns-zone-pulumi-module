@@ -2,6 +2,7 @@ package aws
 
 import (
 	"context"
+
 	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/enums/operationtype"
 
 	"github.com/pkg/errors"
@@ -25,7 +26,7 @@ func Outputs(ctx context.Context, input *dnszonestack.DnsZoneAwsStackInput) (*dn
 }
 
 func Get(stackOutput map[string]interface{}, input *dnszonestack.DnsZoneAwsStackInput) *dnszonestack.DnsZoneAwsStackOutputs {
-	if input.StackJob.OperationType != operationtype.StackJobOperationType_apply || stackOutput == nil {
+	if input.StackJob.Spec.OperationType != operationtype.StackJobOperationType_apply || stackOutput == nil {
 		return &dnszonestack.DnsZoneAwsStackOutputs{}
 	}
 	return &dnszonestack.DnsZoneAwsStackOutputs{

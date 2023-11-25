@@ -2,6 +2,7 @@ package gcp
 
 import (
 	"context"
+
 	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/enums/operationtype"
 
 	"github.com/pkg/errors"
@@ -25,7 +26,7 @@ func Outputs(ctx context.Context, input *dnszonestack.DnsZoneGcpStackInput) (*dn
 }
 
 func Get(stackOutput map[string]interface{}, input *dnszonestack.DnsZoneGcpStackInput) *dnszonestack.DnsZoneGcpStackOutputs {
-	if input.StackJob.OperationType != operationtype.StackJobOperationType_apply || stackOutput == nil {
+	if input.StackJob.Spec.OperationType != operationtype.StackJobOperationType_apply || stackOutput == nil {
 		return &dnszonestack.DnsZoneGcpStackOutputs{}
 	}
 	return &dnszonestack.DnsZoneGcpStackOutputs{
