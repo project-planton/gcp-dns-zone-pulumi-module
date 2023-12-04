@@ -27,7 +27,7 @@ func addDnsRecords(ctx *pulumi.Context, dnsDomain *dnsv1state.DnsZone, domainZon
 			Project:     domainZone.Project,
 			Rrdatas:     pulumi.ToStringArray(domainRecord.Values),
 			Ttl:         pulumi.IntPtr(int(domainRecord.TtlSeconds)),
-			Type:        pulumi.String(domainRecord.RecordType),
+			Type:        pulumi.String(domainRecord.RecordType.String()),
 		}, pulumi.Parent(domainZone))
 		if err != nil {
 			return errors.Wrapf(err, "failed to add %s rec", domainRecord)
