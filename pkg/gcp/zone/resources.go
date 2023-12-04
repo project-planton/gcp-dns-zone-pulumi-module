@@ -2,6 +2,7 @@ package zone
 
 import (
 	"fmt"
+
 	"github.com/pkg/errors"
 	"github.com/plantoncloud-inc/go-commons/cloud/gcp/iam/roles/standard"
 	commonsdnsdomain "github.com/plantoncloud-inc/go-commons/network/dns/domain"
@@ -10,9 +11,9 @@ import (
 	pb "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/gcp"
 	wordpb "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/english/enums"
 	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/network/dns/domain/enums"
-	pulumigcp "github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp"
-	"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/dns"
-	"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/projects"
+	pulumigcp "github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp"
+	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/dns"
+	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/projects"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 

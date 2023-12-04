@@ -8,7 +8,7 @@ import (
 	wordpb "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/english/enums"
 	pulumiawsnative "github.com/pulumi/pulumi-aws-native/sdk/go/aws"
 	"github.com/pulumi/pulumi-aws-native/sdk/go/aws/route53"
-	"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/dns"
+	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/dns"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
