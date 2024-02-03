@@ -37,6 +37,11 @@ func Resources(ctx *pulumi.Context, input *Input) (*dns.ManagedZone, error) {
 // addIamPolicy creates iam policy granting gcp service accounts permissions required for managing records in the zone.
 func addIamPolicy(ctx *pulumi.Context, stackResourceInput *pb.DnsZoneGcpStackResourceInput,
 	addedManagedZone *dns.ManagedZone) error {
+	//when there are no service-accounts, then there is nothing else to do
+	if len(stackResourceInput.DnsZone.Spec.Gcp.IamServiceAccounts) == 0 {
+		return nil
+	}
+
 	zoneName := commonsdnszone.GetZoneName(stackResourceInput.DnsZone.Metadata.Name)
 	// todo: the correct resource to use is https://cloud.google.com/dns/docs/zones/iam-per-resource-zones#gcloud
 	// but the resource is not yet available in the gcp provider.
