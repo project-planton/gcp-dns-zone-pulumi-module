@@ -4,7 +4,7 @@ import (
 	"github.com/pkg/errors"
 	commonsdnszone "github.com/plantoncloud-inc/go-commons/network/dns/zone"
 	puluminameoutputaws "github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/aws/output"
-	pb "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/aws"
+	c2cv1deploydnsstackawsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/aws/model"
 	wordpb "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/english/enums"
 	pulumiawsnative "github.com/pulumi/pulumi-aws-native/sdk/go/aws"
 	"github.com/pulumi/pulumi-aws-native/sdk/go/aws/route53"
@@ -14,7 +14,7 @@ import (
 
 type Input struct {
 	AwsProvider        *pulumiawsnative.Provider
-	StackResourceInput *pb.DnsZoneAwsStackResourceInput
+	StackResourceInput *c2cv1deploydnsstackawsmodel.DnsZoneAwsStackResourceInput
 	Labels             map[string]string
 }
 

@@ -5,12 +5,12 @@ import (
 	"github.com/plantoncloud-inc/dns-zone-pulumi-blueprint/pkg/aws/record"
 	"github.com/plantoncloud-inc/dns-zone-pulumi-blueprint/pkg/aws/zone"
 	pulumiawsnativeprovider "github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/automation/provider/aws"
-	pb "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/aws"
+	c2cv1deploydnsstackawsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/aws/model"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type ResourceStack struct {
-	Input     *pb.DnsZoneAwsStackInput
+	Input     *c2cv1deploydnsstackawsmodel.DnsZoneAwsStackInput
 	AwsLabels map[string]string
 }
 

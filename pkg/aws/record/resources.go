@@ -4,7 +4,7 @@ import (
 	"github.com/pkg/errors"
 	puluminameawsoutput "github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/aws/output"
 	"github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/common/resource/network/dns/record"
-	dnsv1state "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone"
+	code2cloudv1deploydnsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/model"
 	"github.com/pulumi/pulumi-aws-native/sdk/go/aws/route53"
 	awsclassic "github.com/pulumi/pulumi-aws/sdk/v6/go/aws"
 	awsclassicroute53 "github.com/pulumi/pulumi-aws/sdk/v6/go/aws/route53"
@@ -14,7 +14,7 @@ import (
 
 type Input struct {
 	AwsProvider    *awsclassic.Provider
-	DnsZone        *dnsv1state.DnsZone
+	DnsZone        *code2cloudv1deploydnsmodel.DnsZone
 	CreatedR53Zone *route53.HostedZone
 }
 

@@ -8,7 +8,7 @@ import (
 	commonsdnsdomain "github.com/plantoncloud-inc/go-commons/network/dns/domain"
 	commonsdnszone "github.com/plantoncloud-inc/go-commons/network/dns/zone"
 	puluminameoutputgcp "github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/gcp/output"
-	pb "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/gcp"
+	c2cv1deploydnsstackgcpmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/gcp/model"
 	wordpb "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/english/enums"
 	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/network/dns/domain/enums"
 	pulumigcp "github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp"
@@ -19,7 +19,7 @@ import (
 
 type Input struct {
 	GcpProvider        *pulumigcp.Provider
-	StackResourceInput *pb.DnsZoneGcpStackResourceInput
+	StackResourceInput *c2cv1deploydnsstackgcpmodel.DnsZoneGcpStackResourceInput
 	Labels             map[string]string
 }
 
@@ -35,7 +35,7 @@ func Resources(ctx *pulumi.Context, input *Input) (*dns.ManagedZone, error) {
 }
 
 // addIamPolicy creates iam policy granting gcp service accounts permissions required for managing records in the zone.
-func addIamPolicy(ctx *pulumi.Context, stackResourceInput *pb.DnsZoneGcpStackResourceInput,
+func addIamPolicy(ctx *pulumi.Context, stackResourceInput *c2cv1deploydnsstackgcpmodel.DnsZoneGcpStackResourceInput,
 	addedManagedZone *dns.ManagedZone) error {
 	//when there are no service-accounts, then there is nothing else to do
 	if len(stackResourceInput.DnsZone.Spec.Gcp.IamServiceAccounts) == 0 {

@@ -9,11 +9,11 @@ import (
 	"github.com/plantoncloud-inc/dns-zone-pulumi-blueprint/pkg/aws/zone"
 	"github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/org"
 	"github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/stack/output/backend"
-	dnsv1state "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone"
-	dnszonestack "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/aws"
+	code2cloudv1deploydnsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/model"
+	c2cv1deploydnsstackawsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/aws/model"
 )
 
-func Outputs(ctx context.Context, input *dnszonestack.DnsZoneAwsStackInput) (*dnszonestack.DnsZoneAwsStackOutputs, error) {
+func Outputs(ctx context.Context, input *c2cv1deploydnsstackawsmodel.DnsZoneAwsStackInput) (*c2cv1deploydnsstackawsmodel.DnsZoneAwsStackOutputs, error) {
 	pulumiOrgName, err := org.GetOrgName()
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get pulumi org name")
@@ -25,13 +25,13 @@ func Outputs(ctx context.Context, input *dnszonestack.DnsZoneAwsStackInput) (*dn
 	return Get(stackOutput, input), nil
 }
 
-func Get(stackOutput map[string]interface{}, input *dnszonestack.DnsZoneAwsStackInput) *dnszonestack.DnsZoneAwsStackOutputs {
+func Get(stackOutput map[string]interface{}, input *c2cv1deploydnsstackawsmodel.DnsZoneAwsStackInput) *c2cv1deploydnsstackawsmodel.DnsZoneAwsStackOutputs {
 	if input.StackJob.Spec.OperationType != operationtype.StackJobOperationType_apply || stackOutput == nil {
-		return &dnszonestack.DnsZoneAwsStackOutputs{}
+		return &c2cv1deploydnsstackawsmodel.DnsZoneAwsStackOutputs{}
 	}
-	return &dnszonestack.DnsZoneAwsStackOutputs{
-		ZoneStatus: &dnsv1state.DnsZoneStatus{
-			Aws: &dnsv1state.DnsZoneAwsStatus{
+	return &c2cv1deploydnsstackawsmodel.DnsZoneAwsStackOutputs{
+		ZoneStatus: &code2cloudv1deploydnsmodel.DnsZoneStatus{
+			Aws: &code2cloudv1deploydnsmodel.DnsZoneAwsStatus{
 				Nameservers: backend.GetStringSliceVal(stackOutput, zone.GetManagedZoneNameserversOutputName(input.ResourceInput.DnsZone.Metadata.Name)),
 			},
 		},
