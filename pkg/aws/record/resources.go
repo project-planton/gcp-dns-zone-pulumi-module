@@ -1,15 +1,16 @@
 package record
 
 import (
+	"strings"
+
 	"github.com/pkg/errors"
 	puluminameawsoutput "github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/aws/output"
 	"github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/common/resource/network/dns/record"
-	code2cloudv1deploydnsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/model"
+	code2cloudv1deploydnsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/dnszone/model"
 	"github.com/pulumi/pulumi-aws-native/sdk/go/aws/route53"
 	awsclassic "github.com/pulumi/pulumi-aws/sdk/v6/go/aws"
 	awsclassicroute53 "github.com/pulumi/pulumi-aws/sdk/v6/go/aws/route53"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"strings"
 )
 
 type Input struct {

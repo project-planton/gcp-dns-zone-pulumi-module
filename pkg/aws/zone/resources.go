@@ -4,8 +4,8 @@ import (
 	"github.com/pkg/errors"
 	commonsdnszone "github.com/plantoncloud-inc/go-commons/network/dns/zone"
 	puluminameoutputaws "github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/aws/output"
-	c2cv1deploydnsstackawsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/aws/model"
-	wordpb "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/english/enums"
+	c2cv1deploydnsstackawsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/dnszone/stack/aws/model"
+	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/english/enums/englishword"
 	pulumiawsnative "github.com/pulumi/pulumi-aws-native/sdk/go/aws"
 	"github.com/pulumi/pulumi-aws-native/sdk/go/aws/route53"
 	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/dns"
@@ -43,11 +43,11 @@ func addZone(ctx *pulumi.Context, input *Input) (*route53.HostedZone, error) {
 }
 
 func GetManagedZoneNameOutputName(domainName string) string {
-	return puluminameoutputaws.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), wordpb.Word_name.String())
+	return puluminameoutputaws.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_name.String())
 }
 
 func GetManagedZoneNameserversOutputName(domainName string) string {
-	return puluminameoutputaws.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), wordpb.Word_nameservers.String())
+	return puluminameoutputaws.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_nameservers.String())
 }
 
 func convertLabelsToTags(labels map[string]string) route53.HostedZoneTagArray {

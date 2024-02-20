@@ -2,15 +2,14 @@ package gcp
 
 import (
 	"context"
-
-	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/enums/operationtype"
+	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype"
 
 	"github.com/pkg/errors"
 	gcpdnszonestack "github.com/plantoncloud-inc/dns-zone-pulumi-blueprint/pkg/gcp/zone"
 	"github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/org"
 	"github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/stack/output/backend"
-	code2cloudv1deploydnsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/model"
-	c2cv1deploydnsstackgcpmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/gcp/model"
+	code2cloudv1deploydnsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/dnszone/model"
+	c2cv1deploydnsstackgcpmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/dnszone/stack/gcp/model"
 )
 
 func Outputs(ctx context.Context, input *c2cv1deploydnsstackgcpmodel.DnsZoneGcpStackInput) (*c2cv1deploydnsstackgcpmodel.DnsZoneGcpStackOutputs, error) {
@@ -26,7 +25,7 @@ func Outputs(ctx context.Context, input *c2cv1deploydnsstackgcpmodel.DnsZoneGcpS
 }
 
 func Get(stackOutput map[string]interface{}, input *c2cv1deploydnsstackgcpmodel.DnsZoneGcpStackInput) *c2cv1deploydnsstackgcpmodel.DnsZoneGcpStackOutputs {
-	if input.StackJob.Spec.OperationType != operationtype.StackJobOperationType_apply || stackOutput == nil {
+	if input.StackJob.Spec.OperationType != stackjoboperationtype.StackJobOperationType_apply || stackOutput == nil {
 		return &c2cv1deploydnsstackgcpmodel.DnsZoneGcpStackOutputs{}
 	}
 	return &c2cv1deploydnsstackgcpmodel.DnsZoneGcpStackOutputs{

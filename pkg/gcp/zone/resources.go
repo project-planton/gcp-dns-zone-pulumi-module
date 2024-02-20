@@ -8,13 +8,19 @@ import (
 	commonsdnsdomain "github.com/plantoncloud-inc/go-commons/network/dns/domain"
 	commonsdnszone "github.com/plantoncloud-inc/go-commons/network/dns/zone"
 	puluminameoutputgcp "github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/gcp/output"
-	c2cv1deploydnsstackgcpmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/gcp/model"
-	wordpb "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/english/enums"
-	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/network/dns/domain/enums"
+	c2cv1deploydnsstackgcpmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/dnszone/stack/gcp/model"
+	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/english/enums/englishword"
 	pulumigcp "github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp"
 	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/dns"
 	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/projects"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+)
+
+type Visibility string
+
+const (
+	public  Visibility = "public"
+	private Visibility = "private"
 )
 
 type Input struct {
@@ -73,7 +79,7 @@ func addZone(ctx *pulumi.Context, input *Input) (*dns.ManagedZone, error) {
 		Project:                 pulumi.String(input.StackResourceInput.DnsZone.Spec.Gcp.ProjectId),
 		Description:             pulumi.String(fmt.Sprintf("env zone for %s", input.StackResourceInput.DnsZone.Metadata.Name)),
 		DnsName:                 pulumi.String(commonsdnsdomain.SuffixDot(input.StackResourceInput.DnsZone.Metadata.Name)),
-		Visibility:              pulumi.String(commonsdnsdomain.GeVisibility(enums.DnsDomainVisibility_DNS_DOMAIN_VISIBILITY_EXTERNAL)),
+		Visibility:              pulumi.String(public),
 		PrivateVisibilityConfig: nil,
 		Labels:                  pulumi.ToStringMap(input.Labels),
 	}, pulumi.Provider(input.GcpProvider))
@@ -102,13 +108,13 @@ func addZone(ctx *pulumi.Context, input *Input) (*dns.ManagedZone, error) {
 //}
 
 func GetManagedZoneNameOutputName(domainName string) string {
-	return puluminameoutputgcp.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), wordpb.Word_name.String())
+	return puluminameoutputgcp.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_name.String())
 }
 
 func GetManagedZoneNameserversOutputName(domainName string) string {
-	return puluminameoutputgcp.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), wordpb.Word_nameservers.String())
+	return puluminameoutputgcp.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_nameservers.String())
 }
 
 func GetManagedZoneGcpProjectIdOutputName(domainName string) string {
-	return puluminameoutputgcp.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), wordpb.Word_project.String(), wordpb.Word_id.String())
+	return puluminameoutputgcp.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_project.String(), englishword.EnglishWord_id.String())
 }
