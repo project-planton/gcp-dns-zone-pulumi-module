@@ -21,10 +21,10 @@ func Outputs(ctx context.Context, input *c2cv1deploydnsstackgcpmodel.DnsZoneGcpS
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get stack output")
 	}
-	return Get(stackOutput, input), nil
+	return OutputMapTransformer(stackOutput, input), nil
 }
 
-func Get(stackOutput map[string]interface{}, input *c2cv1deploydnsstackgcpmodel.DnsZoneGcpStackInput) *c2cv1deploydnsstackgcpmodel.DnsZoneGcpStackOutputs {
+func OutputMapTransformer(stackOutput map[string]interface{}, input *c2cv1deploydnsstackgcpmodel.DnsZoneGcpStackInput) *c2cv1deploydnsstackgcpmodel.DnsZoneGcpStackOutputs {
 	if input.StackJob.Spec.OperationType != stackjoboperationtype.StackJobOperationType_apply || stackOutput == nil {
 		return &c2cv1deploydnsstackgcpmodel.DnsZoneGcpStackOutputs{}
 	}
