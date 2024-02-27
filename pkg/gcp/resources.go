@@ -2,10 +2,10 @@ package gcp
 
 import (
 	"github.com/pkg/errors"
-	"github.com/plantoncloud-inc/dns-zone-pulumi-blueprint/pkg/gcp/record"
-	"github.com/plantoncloud-inc/dns-zone-pulumi-blueprint/pkg/gcp/zone"
-	pulumigcpprovider "github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/automation/provider/google"
+	"github.com/plantoncloud/dns-zone-pulumi-blueprint/pkg/gcp/record"
+	"github.com/plantoncloud/dns-zone-pulumi-blueprint/pkg/gcp/zone"
 	c2cv1deploydnsstackgcpmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/dnszone/stack/gcp/model"
+	pulumigcpprovider "github.com/plantoncloud/pulumi-stack-runner-go-sdk/pkg/automation/provider/google"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 

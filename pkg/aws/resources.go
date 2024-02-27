@@ -2,10 +2,10 @@ package aws
 
 import (
 	"github.com/pkg/errors"
-	"github.com/plantoncloud-inc/dns-zone-pulumi-blueprint/pkg/aws/record"
-	"github.com/plantoncloud-inc/dns-zone-pulumi-blueprint/pkg/aws/zone"
-	pulumiawsnativeprovider "github.com/plantoncloud-inc/pulumi-stack-runner-go-sdk/pkg/automation/provider/aws"
+	"github.com/plantoncloud/dns-zone-pulumi-blueprint/pkg/aws/record"
+	"github.com/plantoncloud/dns-zone-pulumi-blueprint/pkg/aws/zone"
 	c2cv1deploydnsstackawsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/dnszone/stack/aws/model"
+	pulumiawsnativeprovider "github.com/plantoncloud/pulumi-stack-runner-go-sdk/pkg/automation/provider/aws"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
