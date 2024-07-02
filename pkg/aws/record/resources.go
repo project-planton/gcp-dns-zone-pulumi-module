@@ -1,12 +1,12 @@
 package record
 
 import (
+	"github.com/plantoncloud/pulumi-blueprint-golang-commons/pkg/aws/pulumiawsprovider"
+	"github.com/plantoncloud/pulumi-blueprint-golang-commons/pkg/dnsrecord"
 	"strings"
 
 	"github.com/pkg/errors"
 	code2cloudv1deploydnsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/dnszone/model"
-	puluminameawsoutput "github.com/plantoncloud/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/aws/output"
-	"github.com/plantoncloud/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/common/resource/network/dns/record"
 	"github.com/pulumi/pulumi-aws-native/sdk/go/aws/route53"
 	awsclassic "github.com/pulumi/pulumi-aws/sdk/v6/go/aws"
 	awsclassicroute53 "github.com/pulumi/pulumi-aws/sdk/v6/go/aws/route53"
@@ -28,7 +28,7 @@ func Resources(ctx *pulumi.Context, input *Input) error {
 
 func addDnsRecords(ctx *pulumi.Context, input *Input) error {
 	for _, domainRecord := range input.DnsZone.Spec.Records {
-		resName := record.Name(domainRecord.Name, strings.ToLower(domainRecord.RecordType.String()))
+		resName := dnsrecord.PulumiResourceName(domainRecord.Name, strings.ToLower(domainRecord.RecordType.String()))
 		rs, err := awsclassicroute53.NewRecord(ctx, resName, &awsclassicroute53.RecordArgs{
 			ZoneId:  input.CreatedR53Zone.ID(),
 			Name:    pulumi.String(domainRecord.Name),
@@ -39,7 +39,7 @@ func addDnsRecords(ctx *pulumi.Context, input *Input) error {
 		if err != nil {
 			return errors.Wrapf(err, "failed to add %s rec", domainRecord)
 		}
-		ctx.Export(puluminameawsoutput.Name(rs, resName), rs.Records)
+		ctx.Export(pulumiawsprovider.PulumiOutputName(rs, resName), rs.Records)
 	}
 	return nil
 }

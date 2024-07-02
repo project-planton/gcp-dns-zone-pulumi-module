@@ -2,6 +2,7 @@ package zone
 
 import (
 	"fmt"
+	"github.com/plantoncloud/pulumi-blueprint-golang-commons/pkg/google/pulumigoogleprovider"
 
 	"github.com/pkg/errors"
 	"github.com/plantoncloud-inc/go-commons/cloud/gcp/iam/roles/standard"
@@ -9,7 +10,6 @@ import (
 	commonsdnszone "github.com/plantoncloud-inc/go-commons/network/dns/zone"
 	c2cv1deploydnsstackgcpmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/dnszone/stack/gcp/model"
 	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/english/enums/englishword"
-	puluminameoutputgcp "github.com/plantoncloud/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/gcp/output"
 	pulumigcp "github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp"
 	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/dns"
 	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/projects"
@@ -108,13 +108,17 @@ func addZone(ctx *pulumi.Context, input *Input) (*dns.ManagedZone, error) {
 //}
 
 func GetManagedZoneNameOutputName(domainName string) string {
-	return puluminameoutputgcp.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_name.String())
+	return pulumigoogleprovider.PulumiOutputName(dns.ManagedZone{},
+		commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_name.String())
 }
 
 func GetManagedZoneNameserversOutputName(domainName string) string {
-	return puluminameoutputgcp.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_nameservers.String())
+	return pulumigoogleprovider.PulumiOutputName(dns.ManagedZone{},
+		commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_nameservers.String())
 }
 
 func GetManagedZoneGcpProjectIdOutputName(domainName string) string {
-	return puluminameoutputgcp.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_project.String(), englishword.EnglishWord_id.String())
+	return pulumigoogleprovider.PulumiOutputName(dns.ManagedZone{},
+		commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_project.String(),
+		englishword.EnglishWord_id.String())
 }

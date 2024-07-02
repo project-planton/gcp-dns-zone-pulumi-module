@@ -5,7 +5,7 @@ import (
 	commonsdnszone "github.com/plantoncloud-inc/go-commons/network/dns/zone"
 	c2cv1deploydnsstackawsmodel "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/dnszone/stack/aws/model"
 	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/english/enums/englishword"
-	puluminameoutputaws "github.com/plantoncloud/pulumi-stack-runner-go-sdk/pkg/name/provider/cloud/aws/output"
+	"github.com/plantoncloud/pulumi-blueprint-golang-commons/pkg/aws/pulumiawsprovider"
 	pulumiawsnative "github.com/pulumi/pulumi-aws-native/sdk/go/aws"
 	"github.com/pulumi/pulumi-aws-native/sdk/go/aws/route53"
 	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/dns"
@@ -34,7 +34,8 @@ func addZone(ctx *pulumi.Context, input *Input) (*route53.HostedZone, error) {
 	}, pulumi.Provider(input.AwsProvider))
 
 	if err != nil {
-		return nil, errors.Wrapf(err, "failed to add zone for %s domain", input.StackResourceInput.DnsZone.Metadata.Name)
+		return nil, errors.Wrapf(err, "failed to add zone for %s domain",
+			input.StackResourceInput.DnsZone.Metadata.Name)
 	}
 
 	ctx.Export(GetManagedZoneNameOutputName(input.StackResourceInput.DnsZone.Metadata.Name), z.Name)
@@ -43,11 +44,13 @@ func addZone(ctx *pulumi.Context, input *Input) (*route53.HostedZone, error) {
 }
 
 func GetManagedZoneNameOutputName(domainName string) string {
-	return puluminameoutputaws.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_name.String())
+	return pulumiawsprovider.PulumiOutputName(dns.ManagedZone{},
+		commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_name.String())
 }
 
 func GetManagedZoneNameserversOutputName(domainName string) string {
-	return puluminameoutputaws.Name(dns.ManagedZone{}, commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_nameservers.String())
+	return pulumiawsprovider.PulumiOutputName(dns.ManagedZone{},
+		commonsdnszone.GetZoneName(domainName), englishword.EnglishWord_nameservers.String())
 }
 
 func convertLabelsToTags(labels map[string]string) route53.HostedZoneTagArray {
