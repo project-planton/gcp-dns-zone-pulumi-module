@@ -20,8 +20,6 @@ type ResourceStack struct {
 	Input *model.GcpDnsZoneStackInput
 }
 
-type Visibility string
-
 func (s *ResourceStack) Resources(ctx *pulumi.Context) error {
 	gcpProvider, err := pulumigoogleprovider.Get(ctx, s.Input.GcpCredential)
 	if err != nil {
