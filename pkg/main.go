@@ -76,7 +76,7 @@ func (s *ResourceStack) Resources(ctx *pulumi.Context) error {
 
 	//create dns-records in the created managed-zone
 	for index, dnsRecord := range gcpDnsZone.Spec.Records {
-		rs, err := dns.NewRecordSet(ctx,
+		_, err := dns.NewRecordSet(ctx,
 			fmt.Sprintf("dns-record-%d", index),
 			&dns.RecordSetArgs{
 				ManagedZone: createdManagedZone.Name,
@@ -89,9 +89,6 @@ func (s *ResourceStack) Resources(ctx *pulumi.Context) error {
 		if err != nil {
 			return errors.Wrapf(err, "failed to add %s rec", dnsRecord)
 		}
-
-		//export values for each dns-record added to the managed-zone
-		ctx.Export(fmt.Sprintf("dns-record-%d-values", index), rs.Rrdatas)
 	}
 	return nil
 }
