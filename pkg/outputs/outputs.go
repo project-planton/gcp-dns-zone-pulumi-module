@@ -1,4 +1,4 @@
-package pkg
+package outputs
 
 import (
 	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/gcp/gcpdnszone/model"
@@ -6,11 +6,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/auto"
 )
 
-const ManagedZoneNameserversOutputName = "nameservers"
+const (
+	ManagedZoneGcpProjectId = "gcp-project-id"
+	ManagedZoneName         = "managed-zone-name"
+	ManagedZoneNameservers  = "nameservers"
+)
 
 func PulumiOutputsToStackOutputsConverter(stackOutput auto.OutputMap,
 	input *model.GcpDnsZoneStackInput) *model.GcpDnsZoneStackOutputs {
 	return &model.GcpDnsZoneStackOutputs{
-		Nameservers: autoapistackoutput.GetStringSliceVal(stackOutput, ManagedZoneNameserversOutputName),
+		Nameservers: autoapistackoutput.GetStringSliceVal(stackOutput, ManagedZoneNameservers),
 	}
 }

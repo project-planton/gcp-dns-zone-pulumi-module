@@ -3,8 +3,9 @@ package pkg
 import (
 	"fmt"
 	"github.com/pkg/errors"
+	"github.com/plantoncloud/gcp-dns-zone-pulumi-blueprint/pkg/outputs"
 	"github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/gcp/gcpdnszone/model"
-	"github.com/plantoncloud/pulumi-module-golang-commons/pkg/gcp/pulumigoogleprovider"
+	"github.com/plantoncloud/pulumi-module-golang-commons/pkg/provider/gcp/pulumigoogleprovider"
 	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/dns"
 	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/projects"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -44,9 +45,9 @@ func (s *ResourceStack) Resources(ctx *pulumi.Context) error {
 	}
 
 	//export important managed-zone attributes as outputs
-	ctx.Export("managed-zone-name", createdManagedZone.Name)
-	ctx.Export(ManagedZoneNameserversOutputName, createdManagedZone.NameServers)
-	ctx.Export("gcp-project-id", createdManagedZone.Project)
+	ctx.Export(outputs.ManagedZoneName, createdManagedZone.Name)
+	ctx.Export(outputs.ManagedZoneNameservers, createdManagedZone.NameServers)
+	ctx.Export(outputs.ManagedZoneGcpProjectId, createdManagedZone.Project)
 
 	//create IAM binding for the gcp service-accounts to be granted permissions to manage the records in the zone.
 	//with this binding each gcp service-account will be granted permissions to create/delete/update dns-records.
