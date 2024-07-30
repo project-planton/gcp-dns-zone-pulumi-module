@@ -1,4 +1,4 @@
-module github.com/plantoncloud/gcp-dns-zone-pulumi-blueprint
+module github.com/plantoncloud/gcp-dns-zone-pulumi-module
 
 go 1.22
 
