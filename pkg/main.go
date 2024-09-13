@@ -12,19 +12,15 @@ import (
 	"strings"
 )
 
-type ResourceStack struct {
-	Input *gcpdnszone.GcpDnsZoneStackInput
-}
-
-func (s *ResourceStack) Resources(ctx *pulumi.Context) error {
+func Resources(ctx *pulumi.Context, stackInput *gcpdnszone.GcpDnsZoneStackInput) error {
 	//create gcp provider using credentials from the input
-	gcpProvider, err := pulumigoogleprovider.Get(ctx, s.Input.GcpCredential)
+	gcpProvider, err := pulumigoogleprovider.Get(ctx, stackInput.GcpCredential)
 	if err != nil {
 		return errors.Wrap(err, "failed to setup gcp provider")
 	}
 
 	//create a descriptive variable for the api-resource in the input
-	gcpDnsZone := s.Input.ApiResource
+	gcpDnsZone := stackInput.ApiResource
 
 	//replace dots with hyphens to create valid managed-zone name
 	managedZoneName := strings.ReplaceAll(gcpDnsZone.Metadata.Name, ".", "-")
