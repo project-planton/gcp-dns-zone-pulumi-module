@@ -20,7 +20,7 @@ func Resources(ctx *pulumi.Context, stackInput *gcpdnszone.GcpDnsZoneStackInput)
 	}
 
 	//create a descriptive variable for the api-resource in the input
-	gcpDnsZone := stackInput.ApiResource
+	gcpDnsZone := stackInput.Target
 
 	//replace dots with hyphens to create valid managed-zone name
 	managedZoneName := strings.ReplaceAll(gcpDnsZone.Metadata.Name, ".", "-")
