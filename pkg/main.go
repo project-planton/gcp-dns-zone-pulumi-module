@@ -1,10 +1,10 @@
 package pkg
 
 import (
+	gcpdnszonev1 "buf.build/gen/go/plantoncloud/project-planton/protocolbuffers/go/project/planton/apis/provider/gcp/gcpdnszone/v1"
 	"fmt"
 	"github.com/pkg/errors"
 	"github.com/plantoncloud/gcp-dns-zone-pulumi-module/pkg/outputs"
-	"github.com/plantoncloud/project-planton/apis/zzgo/cloud/planton/apis/code2cloud/v1/gcp/gcpdnszone"
 	"github.com/plantoncloud/pulumi-module-golang-commons/pkg/provider/gcp/pulumigoogleprovider"
 	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/dns"
 	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/projects"
@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-func Resources(ctx *pulumi.Context, stackInput *gcpdnszone.GcpDnsZoneStackInput) error {
+func Resources(ctx *pulumi.Context, stackInput *gcpdnszonev1.GcpDnsZoneStackInput) error {
 	//create gcp provider using credentials from the input
 	gcpProvider, err := pulumigoogleprovider.Get(ctx, stackInput.GcpCredential)
 	if err != nil {
