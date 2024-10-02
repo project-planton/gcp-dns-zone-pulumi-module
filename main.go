@@ -1,7 +1,7 @@
 package main
 
 import (
-	gcpdnszonev1 "buf.build/gen/go/plantoncloud/project-planton/protocolbuffers/go/project/planton/apis/provider/gcp/gcpdnszone/v1"
+	gcpdnszonev1 "buf.build/gen/go/plantoncloud/project-planton/protocolbuffers/go/project/planton/provider/gcp/gcpdnszone/v1"
 	"github.com/pkg/errors"
 	"github.com/plantoncloud/gcp-dns-zone-pulumi-module/pkg"
 	"github.com/plantoncloud/pulumi-module-golang-commons/pkg/stackinput"
