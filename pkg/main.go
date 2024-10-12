@@ -1,11 +1,11 @@
 package pkg
 
 import (
-	gcpdnszonev1 "buf.build/gen/go/plantoncloud/project-planton/protocolbuffers/go/project/planton/provider/gcp/gcpdnszone/v1"
+	gcpdnszonev1 "buf.build/gen/go/project-planton/apis/protocolbuffers/go/project/planton/provider/gcp/gcpdnszone/v1"
 	"fmt"
 	"github.com/pkg/errors"
-	"github.com/plantoncloud/gcp-dns-zone-pulumi-module/pkg/outputs"
-	"github.com/plantoncloud/pulumi-module-golang-commons/pkg/provider/gcp/pulumigoogleprovider"
+	"github.com/project-planton/gcp-dns-zone-pulumi-module/pkg/outputs"
+	"github.com/project-planton/pulumi-module-golang-commons/pkg/provider/gcp/pulumigoogleprovider"
 	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/dns"
 	"github.com/pulumi/pulumi-gcp/sdk/v7/go/gcp/projects"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"

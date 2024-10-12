@@ -119,7 +119,7 @@ Please adhere to our [Code of Conduct](CODE_OF_CONDUCT.md) when interacting with
 
 - [Pulumi Documentation](https://www.pulumi.com/docs/)
 - [GCP DNS Documentation](https://cloud.google.com/dns/docs)
-- [Planton Cloud APIs](https://buf.build/plantoncloud/planton-cloud-apis/docs)
+- [Planton Cloud APIs](https://buf.build/project-planton/apis/docs)
 
 ## Getting Started
 
